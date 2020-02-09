@@ -48,7 +48,7 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = 'https://github.com/BoD/klibappstorerating'
         version {
-            name = version
+            name = project.version
         }
     }
     publish = true
@@ -61,5 +61,5 @@ dependencies {
 }
 
 // Use "./gradlew publishToMavenLocal" to deploy the artifacts to your local maven repository
-// Use "USER=<username> KEY=<key> ./gradlew bintrayUpload" to deploy the artifacts to bintray
+// Use "USER=<username> KEY=<key> ./gradlew publishToMavenLocal bintrayUpload" to deploy the artifacts to bintray
 // key can be found here: https://bintray.com/profile/edit and click on "API key"
