@@ -2,7 +2,7 @@ build
 out
 .gradle
 *.iml
-.idea
-.DS_Store
-!.idea/copyright
+.idea/*
+!.idea/copyright/
 !.idea/codeStyles
+.DS_Store
