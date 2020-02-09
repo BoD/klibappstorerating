@@ -3,6 +3,7 @@ description = 'klibappstorerating'
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 compileKotlin {
     kotlinOptions {
@@ -26,7 +27,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        mavenPublication(MavenPublication) {
             from components.java
             artifactId project.description
 
@@ -36,6 +37,23 @@ publishing {
     }
 }
 
+bintray {
+    user = System.getenv("USER")
+    key = System.getenv("KEY")
+    publications = ['mavenPublication']
+    pkg {
+        repo = 'JRAF'
+        name = description
+        userOrg = 'bod'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/BoD/klibappstorerating'
+        version {
+            name = version
+        }
+    }
+    publish = true
+}
+
 dependencies {
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
@@ -43,3 +61,5 @@ dependencies {
 }
 
 // Use "./gradlew publishToMavenLocal" to deploy the artifacts to your local maven repository
+// Use "USER=<username> KEY=<key> ./gradlew bintrayUpload" to deploy the artifacts to bintray
+// key can be found here: https://bintray.com/profile/edit and click on "API key"
