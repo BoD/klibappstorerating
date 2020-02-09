@@ -37,7 +37,7 @@ internal class GooglePlayStoreClient : AppStoreClient {
     }
 
     companion object {
-        private const val URL_APP_PAGE = "https://play.google.com/store/apps/details?id=%1\$s"
+        private const val URL_APP_PAGE = "https://play.google.com/store/apps/details?id=%1\$s&hl=en_US"
         private val REGEX = Regex(".*\"ratingValue\":\"(.*?)\".*", RegexOption.DOT_MATCHES_ALL)
     }
 }
