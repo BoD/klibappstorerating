@@ -33,4 +33,6 @@ internal interface AppStoreClient {
      */
     @Throws(RatingRetrievalException::class)
     suspend fun retrieveRating(appId: String): Float
+
+    fun getStorePageUrl(appId: String): String
 }

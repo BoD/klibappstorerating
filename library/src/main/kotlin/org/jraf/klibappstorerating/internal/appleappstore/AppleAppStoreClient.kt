@@ -31,12 +31,12 @@ import java.net.URL
 
 internal class AppleAppStoreClient : AppStoreClient {
     override suspend fun retrieveRating(appId: String): Float {
-        var text = withContext(Dispatchers.IO) { URL(URL_APP_PAGE.format(appId)).readText() }
-        text = text.substringAfter(DELIM_0).substringBefore(
-            DELIM_1
-        )
+        var text = withContext(Dispatchers.IO) { URL(getStorePageUrl(appId)).readText() }
+        text = text.substringAfter(DELIM_0).substringBefore(DELIM_1)
         return text.toFloat()
     }
+
+    override fun getStorePageUrl(appId: String) = URL_APP_PAGE.format(appId)
 
     companion object {
         private const val URL_APP_PAGE = "https://itunes.apple.com/fr/app/%1\$s"

@@ -31,10 +31,12 @@ import java.net.URL
 
 internal class GooglePlayStoreClient : AppStoreClient {
     override suspend fun retrieveRating(appId: String): Float {
-        var text = withContext(Dispatchers.IO) { URL(URL_APP_PAGE.format(appId)).readText() }
+        var text = withContext(Dispatchers.IO) { URL(getStorePageUrl(appId)).readText() }
         text = REGEX.matchEntire(text)!!.groupValues[1]
         return text.toFloat()
     }
+
+    override fun getStorePageUrl(appId: String) = URL_APP_PAGE.format(appId)
 
     companion object {
         private const val URL_APP_PAGE = "https://play.google.com/store/apps/details?id=%1\$s&hl=en_US"

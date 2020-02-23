@@ -41,6 +41,10 @@ object KLibAppStoreRating {
         }
     }
 
+    fun getStorePageUrl(appStore: AppStore, appId: String): String {
+        return buildAppStoreClient(appStore).getStorePageUrl(appId)
+    }
+
     private fun buildAppStoreClient(appStore: AppStore) = when (appStore) {
         AppStore.APPLE_APP_STORE -> AppleAppStoreClient()
         AppStore.GOOGLE_PLAY_STORE -> GooglePlayStoreClient()
