@@ -39,7 +39,7 @@ internal class GooglePlayStoreClient : AppStoreClient {
     override fun getStorePageUrl(appId: String) = URL_APP_PAGE.format(appId)
 
     companion object {
-        private const val URL_APP_PAGE = "https://play.google.com/store/apps/details?id=%1\$s&hl=en_US"
+        private const val URL_APP_PAGE = "https://play.google.com/store/apps/details?id=%1\$s&hl=en_US&gl=US"
         private val REGEX = Regex(".*\"ratingValue\":\"(.*?)\".*", RegexOption.DOT_MATCHES_ALL)
     }
 }
